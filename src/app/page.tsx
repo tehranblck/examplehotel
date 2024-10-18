@@ -1,8 +1,22 @@
+import { GetServerSideProps } from "next";
 
-export default function Home() {
+// Sayfa bileşeni
+export default function Home({ content }: { content: string }) {
   return (
     <>
-    home
+      {content}
     </>
   );
 }
+
+// getServerSideProps fonksiyonu, sunucu tarafında çalışacak
+export const getServerSideProps: GetServerSideProps = async (context) => {
+  // Sunucu tarafında "home" verisini sağlayabiliriz
+  const content = "home";
+
+  return {
+    props: {
+      content, // Sayfaya "home" içeriğini gönder
+    },
+  };
+};
